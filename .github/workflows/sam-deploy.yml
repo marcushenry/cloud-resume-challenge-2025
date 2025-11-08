@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write     # needed for OIDC
+  id-token: write
   contents: read
 
 env:
@@ -16,7 +16,6 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,6 +28,12 @@ jobs:
 
       - name: Install AWS SAM CLI
         uses: aws-actions/setup-sam@v2
+
+      # ✅ Add this step to match your Lambda runtime
+      - name: Setup Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
       - name: Build SAM application
         run: sam build
