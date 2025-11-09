@@ -2,7 +2,7 @@ name: SAM Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -41,5 +41,6 @@ jobs:
         run: |
           sam deploy \
             --config-env ci \
+            --resolve-s3 \
             --stack-name "${SAM_STACK_NAME}" \
             --no-fail-on-empty-changeset
