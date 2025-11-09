@@ -34,3 +34,21 @@ warm_containers = "EAGER"
 
 [default.local_start_lambda.parameters]
 warm_containers = "EAGER"
+
+# 👇 Add this new CI-specific environment (used by GitHub Actions)
+[ci.global.parameters]
+stack_name = "cloud-resume-challenge"
+region = "us-east-1"
+
+[ci.build.parameters]
+cached = true
+parallel = true
+
+[ci.deploy.parameters]
+capabilities = "CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
+confirm_changeset = false
+resolve_s3 = true
+s3_prefix = "cloud-resume-challenge"
+region = "us-east-1"
+disable_rollback = true
+image_repositories = []
