@@ -42,5 +42,6 @@ jobs:
           sam deploy \
             --config-env ci \
             --resolve-s3 \
+            --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND
             --stack-name "${SAM_STACK_NAME}" \
             --no-fail-on-empty-changeset
