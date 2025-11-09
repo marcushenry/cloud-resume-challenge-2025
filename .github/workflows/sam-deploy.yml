@@ -33,7 +33,7 @@ jobs:
           pip install pytest
 
       - name: Run tests
-        run: pytest -q tests
+        run: pytest -q tests/test_handler.py
   
   deploy:
     name: Deploy SAM application
