@@ -1,4 +1,4 @@
-from app import lambda_handler
+from hello_world.app import lambda_handler
 
 def test_options_request_returns_cors_headers():
     # Arrange
