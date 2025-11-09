@@ -29,8 +29,8 @@ jobs:
 
       # If each function has its own requirements.txt, install them before tests.
       # (Skip any that don't exist—this handles both cases.)
-     # - name: Install per-function deps (optional)
-        #run: |
+      - name: Install per-function deps (optional)
+        run: |
           for f in cloud-resume-challenge/*-function; do
             if [ -f "$f/requirements.txt" ]; then
               pip install -r "$f/requirements.txt"
@@ -38,8 +38,8 @@ jobs:
           done
 
       # Run tests in each function dir (Python equivalent of the Go example)
-     # - name: Run unit tests (all functions)
-        #run: |
+     - name: Run unit tests (all functions)
+       run: |
           set -e
           for f in cloud-resume-challenge/*-function; do
             if [ -d "$f/tests" ]; then
