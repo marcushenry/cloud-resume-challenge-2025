@@ -14,7 +14,42 @@ env:
   SAM_STACK_NAME: ${{ secrets.SAM_STACK_NAME || 'sam-app' }}
 
 jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python (match your Lambda runtime)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"   # or 3.12 if your Runtime is python3.12
+
+      - name: Install pytest
+        run: pip install -U pip pytest
+
+      # If each function has its own requirements.txt, install them before tests.
+      # (Skip any that don't exist—this handles both cases.)
+     # - name: Install per-function deps (optional)
+        run: |
+          for f in cloud-resume-challenge/*-function; do
+            if [ -f "$f/requirements.txt" ]; then
+              pip install -r "$f/requirements.txt"
+            fi
+          done
+
+      # Run tests in each function dir (Python equivalent of the Go example)
+     # - name: Run unit tests (all functions)
+        run: |
+          set -e
+          for f in cloud-resume-challenge/*-function; do
+            if [ -d "$f/tests" ]; then
+              echo "🔎 Testing $f"
+              pytest -q "$f/tests"
+            fi
+          done 
+          
   deploy:
+    needs: tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -47,11 +82,8 @@ jobs:
             --stack-name "${SAM_STACK_NAME}" \
             --no-fail-on-empty-changeset \
             --region "${AWS_REGION}"
-      
- 
+
       - name: Upload site to S3
         run: |
           aws s3 sync resume-site/ s3://gooseboys-cloud-resume-challenge --delete
-
-
-
+ 
