@@ -14,11 +14,12 @@ env:
   SAM_STACK_NAME: ${{ secrets.SAM_STACK_NAME || 'sam-app' }}
 
 jobs:
-
-
   tests:
     name: Run Unit & Integration Tests
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      AWS_DEFAULT_REGION: us-east-1
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -39,6 +40,8 @@ jobs:
 
       - name: Run unit tests
         run: pytest -q tests/unit
+
+
 
 
   deploy:
