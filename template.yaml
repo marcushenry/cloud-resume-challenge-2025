@@ -8,13 +8,18 @@ Globals:
     Timeout: 3
 
 Resources:
-
-
-
+  
   AlarmTopic:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: crc-alarms
+
+  AlarmEmailSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref AlarmTopic
+      Protocol: email
+      Endpoint: you@example.com
   
   MyWebsite:
     Type: AWS::S3::Bucket
