@@ -3,39 +3,122 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   cloud-resume-challenge
 
-  Sample SAM Template for cloud-resume-challenge
-
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 3
 
 Resources:
+  # S3 bucket that stores the site content (no website hosting here; CloudFront serves it)
   MyWebsite:
     Type: AWS::S3::Bucket
     Properties:
-      WebsiteConfiguration:
-        IndexDocument: index.html
       BucketName: gooseboys-cloud-resume-challenge
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      # NOTE: removed WebsiteConfiguration (served via CloudFront)
 
+  # Bucket policy: allow ONLY CloudFront (via OAC) to read this bucket
   BucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      PolicyDocument:
-        Id: MyPolicy
-        Version: 2012-10-17
-        Statement:
-          - Sid: PublicReadForGetBucketObjects
-            Effect: Allow
-            Principal: "*"
-            Action: "s3:GetObject"
-            Resource: !Join
-              - ""
-              - - "arn:aws:s3:::"
-                - !Ref MyWebsite
-                - /*
       Bucket: !Ref MyWebsite
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontReadOnly
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action:
+              - s3:GetObject
+            Resource: !Sub "arn:aws:s3:::${MyWebsite}/*"
+            Condition:
+              StringEquals:
+                # Ref on a Distribution returns the distribution ID; this ARN format is global for CF
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${MyDistribution}"
+          # ListBucket is optional for basic site delivery, but including it is harmless and future-proof
+          - Sid: AllowListForCF
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action:
+              - s3:ListBucket
+            Resource: !Sub "arn:aws:s3:::${MyWebsite}"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${MyDistribution}"
 
+  # Origin Access Control for CloudFront -> S3 signed requests
+  MyWebsiteOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: my-site-oac
+        Description: Access S3 via SigV4
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # CloudFront distribution serving the site from the S3 REST endpoint (with OAC)
+  MyDistribution:
+    Type: "AWS::CloudFront::Distribution"
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        Aliases:
+          - marcushenry.ca
+        ViewerCertificate:
+          AcmCertificateArn: !Ref MyCertificate
+          SslSupportMethod: sni-only
+        Origins:
+          - Id: s3-rest-origin
+            DomainName: !Sub "${MyWebsite}.s3.amazonaws.com"   # REST endpoint, not s3-website-...
+            S3OriginConfig: {}                                  # required empty block for S3 origin
+            OriginAccessControlId: !Ref MyWebsiteOAC
+        DefaultCacheBehavior:
+          TargetOriginId: s3-rest-origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          ForwardedValues:
+            QueryString: false
+        # TTLs (optional): can keep 0s for dev, but typical sites use non-zero TTLs
+        DefaultCacheBehavior:
+          TargetOriginId: s3-rest-origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          ForwardedValues:
+            QueryString: false
+
+  # Route 53 alias to CloudFront
+  MyDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z0188629LIZ3QYKWOH6U # <-- ensure this is your actual Hosted Zone ID
+      Name: marcushenry.ca               # <-- your domain
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt MyDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2 # CloudFront’s fixed hosted zone ID (global)
+
+  # ACM cert (in us-east-1 for CloudFront)
+  MyCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: marcushenry.ca
+      ValidationMethod: DNS
+
+  # DynamoDB table (unchanged)
   DynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -48,49 +131,9 @@ Resources:
         - AttributeName: ID
           KeyType: HASH
 
-  MyDistribution:
-    Type: "AWS::CloudFront::Distribution"
-    Properties:
-      DistributionConfig:
-        DefaultCacheBehavior:
-          ViewerProtocolPolicy: redirect-to-https
-          TargetOriginId: gooseboys-cloud-resume-challenge.s3-website-us-east-1.amazonaws.com
-          DefaultTTL: 0
-          MinTTL: 0
-          MaxTTL: 0
-          ForwardedValues:
-            QueryString: false
-        ViewerCertificate:
-          AcmCertificateArn: !Ref MyCertificate
-          SslSupportMethod: sni-only
-        Aliases:
-          - marcushenry.ca
-        Origins:
-          - DomainName: gooseboys-cloud-resume-challenge.s3-website-us-east-1.amazonaws.com
-            Id: gooseboys-cloud-resume-challenge.s3-website-us-east-1.amazonaws.com
-            CustomOriginConfig:
-              OriginProtocolPolicy: http-only
-        Enabled: "true"
-        DefaultRootObject: index.html
-
-  MyDNSRecord:
-    Type: AWS::Route53::RecordSet
-    Properties:
-      HostedZoneId: Z0188629LIZ3QYKWOH6U # <-- Replace with your Hosted Zone ID
-      Name: marcushenry.ca # <-- Replace with your domain name
-      Type: A
-      AliasTarget:
-        DNSName: !GetAtt MyDistribution.DomainName
-        HostedZoneId: Z2FDTNDATAQYW2 # CloudFront’s fixed hosted zone ID (global)
-
-  MyCertificate:
-    Type: AWS::CertificateManager::Certificate
-    Properties:
-      DomainName: marcushenry.ca
-      ValidationMethod: DNS
-
+  # Lambda/API (unchanged)
   HelloWorldFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: hello_world/
       Handler: app.lambda_handler
@@ -105,15 +148,12 @@ Resources:
         - x86_64
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /hello
             Method: get
 
 Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/Prod/hello/"
