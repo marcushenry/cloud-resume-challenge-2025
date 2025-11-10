@@ -19,7 +19,27 @@ Resources:
     Properties:
       TopicArn: !Ref AlarmTopic
       Protocol: email
-      Endpoint: you@example.com
+      Endpoint: marcusphenry@gmail.com
+
+  LambdaErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: CRC-Lambda-Errors
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref HelloWorldFunction   
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmDescription: "Alert when the visitor-counter Lambda records any errors."
+      AlarmActions:
+        - !Ref AlarmTopic
   
   MyWebsite:
     Type: AWS::S3::Bucket
@@ -33,9 +53,9 @@ Resources:
       OwnershipControls:
         Rules:
           - ObjectOwnership: BucketOwnerEnforced
-      # NOTE: removed WebsiteConfiguration (served via CloudFront)
+      
 
-  # Bucket policy: allow ONLY CloudFront (via OAC) to read this bucket
+  
   BucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
@@ -52,9 +72,9 @@ Resources:
             Resource: !Sub "arn:aws:s3:::${MyWebsite}/*"
             Condition:
               StringEquals:
-                # Ref on a Distribution returns the distribution ID; this ARN format is global for CF
+        
                 AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${MyDistribution}"
-          # ListBucket is optional for basic site delivery, but including it is harmless and future-proof
+         
           - Sid: AllowListForCF
             Effect: Allow
             Principal:
@@ -66,7 +86,7 @@ Resources:
               StringEquals:
                 AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${MyDistribution}"
 
-  # Origin Access Control for CloudFront -> S3 signed requests
+  
   MyWebsiteOAC:
     Type: AWS::CloudFront::OriginAccessControl
     Properties:
@@ -77,7 +97,7 @@ Resources:
         SigningBehavior: always
         SigningProtocol: sigv4
 
-  # CloudFront distribution serving the site from the S3 REST endpoint (with OAC)
+ 
   MyDistribution:
     Type: "AWS::CloudFront::Distribution"
     Properties:
@@ -91,8 +111,8 @@ Resources:
           SslSupportMethod: sni-only
         Origins:
           - Id: s3-rest-origin
-            DomainName: !Sub "${MyWebsite}.s3.amazonaws.com"   # REST endpoint, not s3-website-...
-            S3OriginConfig: {}                                  # required empty block for S3 origin
+            DomainName: !Sub "${MyWebsite}.s3.amazonaws.com"   
+            S3OriginConfig: {}                                  
             OriginAccessControlId: !Ref MyWebsiteOAC
         DefaultCacheBehavior:
           TargetOriginId: s3-rest-origin
@@ -102,7 +122,7 @@ Resources:
           Compress: true
           ForwardedValues:
             QueryString: false
-        # TTLs (optional): can keep 0s for dev, but typical sites use non-zero TTLs
+      
         DefaultCacheBehavior:
           TargetOriginId: s3-rest-origin
           ViewerProtocolPolicy: redirect-to-https
@@ -112,25 +132,25 @@ Resources:
           ForwardedValues:
             QueryString: false
 
-  # Route 53 alias to CloudFront
+ 
   MyDNSRecord:
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneId: Z0188629LIZ3QYKWOH6U # <-- ensure this is your actual Hosted Zone ID
-      Name: marcushenry.ca               # <-- your domain
+      HostedZoneId: Z0188629LIZ3QYKWOH6U 
+      Name: marcushenry.ca              
       Type: A
       AliasTarget:
         DNSName: !GetAtt MyDistribution.DomainName
-        HostedZoneId: Z2FDTNDATAQYW2 # CloudFront’s fixed hosted zone ID (global)
+        HostedZoneId: Z2FDTNDATAQYW2 
 
-  # ACM cert (in us-east-1 for CloudFront)
+ 
   MyCertificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
       DomainName: marcushenry.ca
       ValidationMethod: DNS
 
-  # DynamoDB table (unchanged)
+  
   DynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -143,7 +163,6 @@ Resources:
         - AttributeName: ID
           KeyType: HASH
 
-  # Lambda/API (unchanged)
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
