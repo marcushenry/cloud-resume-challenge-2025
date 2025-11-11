@@ -14,11 +14,6 @@ Resources:
     Properties:
       TopicName: crc-alarms-v2
 
-  AlarmTopic:
-    Type: AWS::SNS::Topic
-    Properties:
-      TopicName: crc-alarms
-
 
   AlarmEmailSubscriptionV2:
     Type: AWS::SNS::Subscription
