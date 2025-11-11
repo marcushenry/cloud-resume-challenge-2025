@@ -1140,9 +1140,12 @@ input, select, textarea {
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
-			background-size: auto, 256px 256px;
-			background-position: center, center;
-			background-repeat: no-repeat, repeat;
+			background-size: auto,
+ 256px 256px;
+			background-position: center,
+ center;
+			background-repeat: no-repeat,
+ repeat;
 			z-index: 2;
 		}
 
@@ -1656,3 +1659,54 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/* === Perfectly center and equalize the three buttons === */
+#header nav { 
+  width: 100%;
+  display: block;           /* reset any flex quirks from theme */
+  border: none;
+  margin-top: 2rem;
+}
+
+#header nav::before,
+#header nav::after,
+#header nav ul::before,
+#header nav ul::after,
+#header nav ul li::before,
+#header nav ul li::after {
+  content: none !important; /* kill the vertical connector lines */
+  display: none !important;
+}
+
+/* Use a fixed 3-column grid for perfect alignment */
+#header nav ul {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(12rem, 1fr));
+  gap: 2rem;                /* even space between buttons */
+  justify-content: center;  /* center the whole grid */
+  align-items: center;
+  width: min(960px, 90vw);  /* keeps the row nicely centered */
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  border: 0;
+}
+
+/* Make the links equal-sized buttons */
+#header nav ul li { margin: 0; padding: 0; border: 0 !important; }
+
+#header nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;             /* equal height */
+  padding: 0 24px;
+  border: 1px solid rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-sizing: border-box;   /* border doesn’t change size */
+}
+
+#header nav ul li a:hover {
+  background: rgba(255,255,255,0.1);
+}
