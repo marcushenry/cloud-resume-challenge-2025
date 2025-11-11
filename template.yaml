@@ -14,12 +14,7 @@ Resources:
     Properties:
       TopicName: crc-alarms
 
-  AlarmEmailSubscription:
-    Type: AWS::SNS::Subscription
-    Properties:
-      TopicArn: !Ref AlarmTopic
-      Protocol: email
-      Endpoint: marcusphenry@gmail.com
+
 
   LambdaErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
