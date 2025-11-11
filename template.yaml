@@ -8,18 +8,26 @@ Globals:
     Timeout: 3
 
 Resources:
-  
+
+  AlarmTopicV2:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: crc-alarms-v2
+
   AlarmTopic:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: crc-alarms
 
-  AlarmEmailSubscription:
+
+  AlarmEmailSubscriptionV2:
     Type: AWS::SNS::Subscription
     Properties:
-      TopicArn: !Ref AlarmTopic
+      TopicArn: !Ref AlarmTopicV2
       Protocol: email
       Endpoint: marcusphenry@gmail.com
+
+
   
   LambdaThrottlesAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -38,7 +46,7 @@ Resources:
       ComparisonOperator: GreaterThanOrEqualToThreshold
       TreatMissingData: notBreaching
       AlarmDescription: "Alert when Lambda throttles occur (concurrency/limits)."
-      AlarmActions: [ !Ref AlarmTopic ]
+      AlarmActions: [ !Ref AlarmTopicV2 ]
   
   MyWebsite:
     Type: AWS::S3::Bucket
