@@ -21,25 +21,6 @@ Resources:
       Protocol: email
       Endpoint: marcusphenry@gmail.com
   
-  LambdaErrorsAlarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmName: CRC-Lambda-Errors
-      Namespace: AWS/Lambda
-      MetricName: Errors
-      Dimensions:
-        - Name: FunctionName
-          Value: !Ref HelloWorldFunction   
-      Statistic: Sum
-      Period: 60
-      EvaluationPeriods: 1
-      DatapointsToAlarm: 1
-      Threshold: 1
-      ComparisonOperator: GreaterThanOrEqualToThreshold
-      TreatMissingData: notBreaching
-      AlarmDescription: "Alert when the visitor-counter Lambda records any errors."
-      AlarmActions:
-        - !Ref AlarmTopic
   
   MyWebsite:
     Type: AWS::S3::Bucket
