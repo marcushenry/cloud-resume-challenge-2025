@@ -21,15 +21,15 @@ Resources:
       Protocol: email
       Endpoint: marcusphenry@gmail.com
   
-  LambdaErrorsAlarm:
+  LambdaThrottlesAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
-      AlarmName: CRC-Lambda-Errors
+      AlarmName: CRC-Lambda-Throttles
       Namespace: AWS/Lambda
-      MetricName: Errors
+      MetricName: Throttles
       Dimensions:
         - Name: FunctionName
-          Value: !Ref HelloWorldFunction   
+          Value: !Ref HelloWorldFunction
       Statistic: Sum
       Period: 60
       EvaluationPeriods: 1
@@ -37,9 +37,8 @@ Resources:
       Threshold: 1
       ComparisonOperator: GreaterThanOrEqualToThreshold
       TreatMissingData: notBreaching
-      AlarmDescription: "Alert when the visitor-counter Lambda records any errors."
-      AlarmActions:
-        - !Ref AlarmTopic
+      AlarmDescription: "Alert when Lambda throttles occur (concurrency/limits)."
+      AlarmActions: [ !Ref AlarmTopic ]
   
   MyWebsite:
     Type: AWS::S3::Bucket
