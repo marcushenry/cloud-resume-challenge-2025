@@ -112,6 +112,6 @@ Experiment with CodePipeline or Terraform for comparison
 
 👨‍💻 Author
 
-Marcus “Goose” Henry
+Marcus Henry
 IT Systems Administrator → Cloud Ops Engineer
 📍 Calgary, AB, Canada
