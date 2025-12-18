@@ -110,8 +110,3 @@ Integrate IaC linting and pre-deployment validation
 
 Experiment with CodePipeline or Terraform for comparison
 
-👨‍💻 Author
-
-Marcus Henry
-IT Systems Administrator → Cloud Ops Engineer
-📍 Calgary, AB, Canada
