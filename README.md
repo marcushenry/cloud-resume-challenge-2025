@@ -1,4 +1,4 @@
-🌩️ Cloud Resume Challenge – Gooseboys Cloud Resume
+🌩️ Cloud Resume Challenge 
 Overview
 
 This project is my implementation of the Cloud Resume Challenge, built to demonstrate hands-on experience with AWS cloud services, CI/CD automation, and Infrastructure as Code.
