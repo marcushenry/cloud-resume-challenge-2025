@@ -35,7 +35,9 @@ jobs:
       - name: Run unit tests (only the simple ones)
         env:
           TABLE_NAME: Dummy
-          AWS_REGION: us-east-1   
+          AWS_REGION: us-east-1
+          AWS_DEFAULT_REGION: us-east-1
+          PYTHONPATH: .
         run: |
           pytest -q tests/unit/test_handler.py tests/integration/test_api_gateway.py
   
