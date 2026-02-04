@@ -1660,7 +1660,7 @@ input, select, textarea {
 			opacity: 0;
 		}
 
-/* === Perfectly center and equalize the three buttons === */
+/* === Perfectly center and equalize the header buttons === */
 #header nav { 
   width: 100%;
   display: block;           /* reset any flex quirks from theme */
@@ -1678,14 +1678,14 @@ input, select, textarea {
   display: none !important;
 }
 
-/* Use a fixed 3-column grid for perfect alignment */
+/* Use a fixed 4-column grid for perfect alignment */
 #header nav ul {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(12rem, 1fr));
+  grid-template-columns: repeat(4, minmax(12rem, 1fr));
   gap: 2rem;                /* even space between buttons */
   justify-content: center;  /* center the whole grid */
   align-items: center;
-  width: min(960px, 90vw);  /* keeps the row nicely centered */
+  width: min(1200px, 92vw); /* keeps the row nicely centered */
   margin: 0 auto;
   padding: 0;
   list-style: none;
@@ -1739,4 +1739,3 @@ input, select, textarea {
     font-size: 0.75rem;
   }
 }
-
