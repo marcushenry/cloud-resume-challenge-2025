@@ -1684,7 +1684,7 @@ input, select, textarea {
   grid-template-columns: repeat(4, minmax(12rem, 1fr));
   gap: 2rem;                /* even space between buttons */
   justify-content: center;  /* center the whole grid */
-  align-items: center;
+  align-items: stretch;     /* stretch items for equal height */
   width: min(1200px, 92vw); /* keeps the row nicely centered */
   margin: 0 auto;
   padding: 0;
@@ -1693,14 +1693,16 @@ input, select, textarea {
 }
 
 /* Make the links equal-sized buttons */
-#header nav ul li { margin: 0; padding: 0; border: 0 !important; }
+#header nav ul li { margin: 0; padding: 0; border: 0 !important; height: 100%; }
 
 #header nav ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 64px;             /* equal height */
-  padding: 0 24px;
+  min-height: 64px;         /* min-height instead of fixed height */
+  height: 100%;
+  padding: 10px 24px;
+  text-align: center;
   border: 1px solid rgba(255,255,255,0.6);
   text-transform: uppercase;
   letter-spacing: 1.5px;
