@@ -13,24 +13,39 @@
 
 <body class="is-preload">
 
+	<!-- Animated gradient blobs -->
+	<div class="blob blob-1"></div>
+	<div class="blob blob-2"></div>
+	<div class="blob blob-3"></div>
+
+	<!-- Film grain noise overlay -->
+	<div class="noise-overlay"></div>
+
 	<div id="wrapper">
 
 		<header id="header">
-			<div class="content">
-				<div class="inner">
-					<h1>MARCUS HENRY</h1>
-					<p>SYSTEMS ADMINISTRATOR, CLOUD ENGINEER, AND AI ENTHUSIAST</p>
-				</div>
-			</div>
-			<nav>
+
+			<!-- Top navigation bar -->
+			<nav id="topnav">
+				<span class="nav-wordmark">Marcus Henry</span>
 				<ul>
-					<li><a href="#intro">Cloud Resume Challenge</a></li>
-					<li><a href="cmnt-squad-tracker.html">CMNT Squad Tracker Project</a></li>
+					<li><a href="#intro">Cloud Resume</a></li>
+					<li><a href="cmnt-squad-tracker.html">CMNT Project</a></li>
 					<li><a href="resume.html">Resume</a></li>
-					<li><a href="#about">About Me</a></li>
-					
-					</ul>
+					<li><a href="#about">About</a></li>
+				</ul>
 			</nav>
+
+			<!-- Hero section -->
+			<section id="hero">
+				<div class="location-badge">
+					<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+					Calgary, Alberta
+				</div>
+				<h1 class="hero-title">Systems Administrator<br>&amp; Cloud Engineer.</h1>
+				<p class="hero-tagline">Building reliable infrastructure and exploring the intersection of cloud, automation, and AI.</p>
+				</section>
+
 		</header>
 
 		<div id="main">
@@ -38,29 +53,29 @@
 			<article id="intro">
 				<h2 class="major">The Challenge</h2>
 				<span class="image main"><img src="images/diagram.png" alt="" /></span>
-				<p>The Cloud Resume Challenge is a hands-on project that integrates multiple AWS services to build and deploy a personal resume website in the cloud. 
-				I completed the challenge by designing a static site hosted on Amazon S3, distributed securely through CloudFront and managed with Route 53 and ACM for DNS and SSL. 
-				I created a serverless visitor counter API using API Gateway, AWS Lambda (Python), and DynamoDB, all deployed via AWS SAM and automated through GitHub Actions. 
-				The project strengthened my understanding of serverless architecture, CI/CD pipelines, and Infrastructure as Code, while giving me practical experience in end-to-end deployment, IAM permissions, and cost-efficient AWS design. 
+				<p>The Cloud Resume Challenge is a hands-on project that integrates multiple AWS services to build and deploy a personal resume website in the cloud.
+				I completed the challenge by designing a static site hosted on Amazon S3, distributed securely through CloudFront and managed with Route 53 and ACM for DNS and SSL.
+				I created a serverless visitor counter API using API Gateway, AWS Lambda (Python), and DynamoDB, all deployed via AWS SAM and automated through GitHub Actions.
+				The project strengthened my understanding of serverless architecture, CI/CD pipelines, and Infrastructure as Code, while giving me practical experience in end-to-end deployment, IAM permissions, and cost-efficient AWS design.
 				Completing this challenge was a major milestone that connected my Systems Administration background with real-world CloudOps and DevOps practices.</p>
 			</article>
 
 			<article id="work">
 				<h2 class="major">Current Role</h2>
 				<span class="image main"><img src="images/esg.jpeg" alt="" /></span>
-				<p>I work for the Pandell division of ESG Global, where I’m the sole IT professional in the Canadian division supporting over 100 employees in the Calgary office. 
-					My role spans user support, device management, and network administration, along with maintaining Azure AD, Intune, Exchange, and Microsoft 365 environments. 
-					I manage hardware provisioning, software deployment, security compliance, and day-to-day troubleshooting for both local and remote users. 
-					I also create and maintain PowerShell scripts to automate routine tasks and develop clear technical documentation to support consistent IT processes. 
-					As the only on-site IT resource, I provide both hands-on technical support and operational guidance, ensuring employees stay productive and connected. 
-					My position combines technical problem-solving, process automation, and end-user support, making me an essential link between the Calgary office and ESG Global’s broader IT team</p>
+				<p>I work for the Pandell division of ESG Global, where I'm the sole IT professional in the Canadian division supporting over 100 employees in the Calgary office.
+					My role spans user support, device management, and network administration, along with maintaining Azure AD, Intune, Exchange, and Microsoft 365 environments.
+					I manage hardware provisioning, software deployment, security compliance, and day-to-day troubleshooting for both local and remote users.
+					I also create and maintain PowerShell scripts to automate routine tasks and develop clear technical documentation to support consistent IT processes.
+					As the only on-site IT resource, I provide both hands-on technical support and operational guidance, ensuring employees stay productive and connected.
+					My position combines technical problem-solving, process automation, and end-user support, making me an essential link between the Calgary office and ESG Global's broader IT team</p>
 			</article>
 
 			<article id="about">
 				<h2 class="major">About Me</h2>
 				<span class="image main"><img src="images/89969E5F-D8E2-4DBC-95F2-26C7A66BB818_1_105_c.jpeg" alt="" /></span>
-				<p>I’m a Systems Administrator at ESG Global’s Pandell division in Calgary, supporting 100+ employees and owning day-to-day IT operations end to end. I focus on automation with PowerShell, identity and device management across Azure AD/Intune, and Microsoft 365 administration, with an emphasis on reliability, security, and repeatable processes.</p>
-				<p>Outside of work, I’m an avid motorcyclist and lifelong learner (currently studying Spanish). I’m building toward a Cloud/DevOps role where I can apply automation, infrastructure-as-code, and CI/CD practices to ship resilient systems and improve developer workflows.</p>
+				<p>I'm a Systems Administrator at ESG Global's Pandell division in Calgary, supporting 100+ employees and owning day-to-day IT operations end to end. I focus on automation with PowerShell, identity and device management across Azure AD/Intune, and Microsoft 365 administration, with an emphasis on reliability, security, and repeatable processes.</p>
+				<p>Outside of work, I'm an avid motorcyclist and lifelong learner (currently studying Spanish). I'm building toward a Cloud/DevOps role where I can apply automation, infrastructure-as-code, and CI/CD practices to ship resilient systems and improve developer workflows.</p>
 			</article>
 
 			<article id="contact">
@@ -86,259 +101,9 @@
 					</ul>
 				</form>
 				<ul class="icons">
-					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
 				</ul>
-			</article>
-
-			<article id="elements">
-				<h2 class="major">Elements</h2>
-
-				<section>
-					<h3 class="major">Text</h3>
-					<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is
-						<em>emphasized</em>.
-						This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-						This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a
-							href="#">this is a link</a>.</p>
-					<hr />
-					<h2>Heading Level 2</h2>
-					<h3>Heading Level 3</h3>
-					<h4>Heading Level 4</h4>
-					<h5>Heading Level 5</h5>
-					<h6>Heading Level 6</h6>
-					<hr />
-					<h4>Blockquote</h4>
-					<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus
-						euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis
-						iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem
-						ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-					<h4>Preformatted</h4>
-					<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-				</section>
-
-				<section>
-					<h3 class="major">Lists</h3>
-
-					<h4>Unordered</h4>
-					<ul>
-						<li>Dolor pulvinar etiam.</li>
-						<li>Sagittis adipiscing.</li>
-						<li>Felis enim feugiat.</li>
-					</ul>
-
-					<h4>Alternate</h4>
-					<ul class="alt">
-						<li>Dolor pulvinar etiam.</li>
-						<li>Sagittis adipiscing.</li>
-						<li>Felis enim feugiat.</li>
-					</ul>
-
-					<h4>Ordered</h4>
-					<ol>
-						<li>Dolor pulvinar etiam.</li>
-						<li>Etiam vel felis viverra.</li>
-						<li>Felis enim feugiat.</li>
-						<li>Dolor pulvinar etiam.</li>
-						<li>Etiam vel felis lorem.</li>
-						<li>Felis enim et feugiat.</li>
-					</ol>
-					<h4>Icons</h4>
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-					</ul>
-
-					<h4>Actions</h4>
-					<ul class="actions">
-						<li><a href="#" class="button primary">Default</a></li>
-						<li><a href="#" class="button">Default</a></li>
-					</ul>
-					<ul class="actions stacked">
-						<li><a href="#" class="button primary">Default</a></li>
-						<li><a href="#" class="button">Default</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h3 class="major">Table</h3>
-					<h4>Default</h4>
-					<div class="table-wrapper">
-						<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Item One</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Two</td>
-									<td>Vis ac commodo adipiscing arcu aliquet.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Three</td>
-									<td> Morbi faucibus arcu accumsan lorem.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Four</td>
-									<td>Vitae integer tempus condimentum.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Five</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-
-					<h4>Alternate</h4>
-					<div class="table-wrapper">
-						<table class="alt">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Item One</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Two</td>
-									<td>Vis ac commodo adipiscing arcu aliquet.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Three</td>
-									<td> Morbi faucibus arcu accumsan lorem.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Four</td>
-									<td>Vitae integer tempus condimentum.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Five</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-				</section>
-
-				<section>
-					<h3 class="major">Buttons</h3>
-					<ul class="actions">
-						<li><a href="#" class="button primary">Primary</a></li>
-						<li><a href="#" class="button">Default</a></li>
-					</ul>
-					<ul class="actions">
-						<li><a href="#" class="button">Default</a></li>
-						<li><a href="#" class="button small">Small</a></li>
-					</ul>
-					<ul class="actions">
-						<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-						<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-					</ul>
-					<ul class="actions">
-						<li><span class="button primary disabled">Disabled</span></li>
-						<li><span class="button disabled">Disabled</span></li>
-					</ul>
-				</section>
-
-				<section>
-					<h3 class="major">Form</h3>
-					<form method="post" action="#">
-						<div class="fields">
-							<div class="field half">
-								<label for="demo-name">Name</label>
-								<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-							</div>
-							<div class="field half">
-								<label for="demo-email">Email</label>
-								<input type="email" name="demo-email" id="demo-email" value=""
-									placeholder="jane@untitled.tld" />
-							</div>
-							<div class="field">
-								<label for="demo-category">Category</label>
-								<select name="demo-category" id="demo-category">
-									<option value="">-</option>
-									<option value="1">Manufacturing</option>
-									<option value="1">Shipping</option>
-									<option value="1">Administration</option>
-									<option value="1">Human Resources</option>
-								</select>
-							</div>
-							<div class="field half">
-								<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-								<label for="demo-priority-low">Low</label>
-							</div>
-							<div class="field half">
-								<input type="radio" id="demo-priority-high" name="demo-priority">
-								<label for="demo-priority-high">High</label>
-							</div>
-							<div class="field half">
-								<input type="checkbox" id="demo-copy" name="demo-copy">
-								<label for="demo-copy">Email me a copy</label>
-							</div>
-							<div class="field half">
-								<input type="checkbox" id="demo-human" name="demo-human" checked>
-								<label for="demo-human">Not a robot</label>
-							</div>
-							<div class="field">
-								<label for="demo-message">Message</label>
-								<textarea name="demo-message" id="demo-message" placeholder="Enter your message"
-									rows="6"></textarea>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Send Message" class="primary" /></li>
-							<li><input type="reset" value="Reset" /></li>
-						</ul>
-					</form>
-				</section>
-
 			</article>
 
 		</div>
@@ -357,12 +122,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 
-
 	<script>
 		(async function () {
-			const apiUrl = "https://swlscxbqnd.execute-api.us-east-1.amazonaws.com/Prod/hello"; // Your API Gateway endpoint
+			const apiUrl = "https://swlscxbqnd.execute-api.us-east-1.amazonaws.com/Prod/hello";
 			const el = document.getElementById("visitor-count");
-			if (!el) return; // fail safe
+			if (!el) return;
 
 			try {
 				const res = await fetch(apiUrl, { method: "GET" });
