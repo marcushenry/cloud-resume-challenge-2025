@@ -30,7 +30,7 @@
 				<span class="nav-wordmark">Marcus Henry</span>
 				<ul>
 					<li><a href="#intro">Cloud Resume</a></li>
-					<li><a href="cmnt-squad-tracker.html">CMNT Project</a></li>
+					<li><a href="#cmnt">CMNT Project</a></li>
 					<li><a href="resume.html">Resume</a></li>
 					<li><a href="#about">About</a></li>
 				</ul>
@@ -73,6 +73,12 @@
 					I also create and maintain PowerShell scripts to automate routine tasks and develop clear technical documentation to support consistent IT processes.
 					As the only on-site IT resource, I provide both hands-on technical support and operational guidance, ensuring employees stay productive and connected.
 					My position combines technical problem-solving, process automation, and end-user support, making me an essential link between the Calgary office and ESG Global's broader IT team</p>
+			</article>
+
+			<article id="cmnt">
+				<h2 class="major">CMNT Squad Tracker</h2>
+				<span class="image main"><img src="images/cmnt-diagram.png" alt="CMNT Squad Tracker architecture diagram" /></span>
+				<p>CMNT (Canada Men's National Team) Squad Tracker is a web app that tracks Canada Men's National Team players and their current club form leading up to this Summer's World Cup. It is built to showcase a production-style DevOps workflow as much as the UI. It surfaces each player's most recent club appearance with key indicators like minutes, goals, assists, results, and a last-updated timestamp to keep the data meaningful ahead of international windows. The site is built with Next.js, TypeScript, and CSS Modules, and it combines JSON player data with update scripts that pull live match stats from an external football API. Deployment is treated like a real cloud environment: the site is hosted on S3 with CloudFront, Route 53, and ACM, backed by infrastructure-as-code (Terraform) and GitHub-based branching for dev and prod. This project serves as a portfolio piece to demonstrate cloud architecture, automation, and modern CI/CD practices while delivering a useful, data-driven product. Live site: <a href="https://cmnt.marcushenry.ca">cmnt.marcushenry.ca</a>.</p>
 			</article>
 
 			<article id="about">
