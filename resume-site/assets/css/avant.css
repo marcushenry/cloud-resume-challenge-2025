@@ -120,7 +120,7 @@ html { scroll-behavior: smooth; }
   width: 140px;
   height: 2px;
   margin: 20px auto;
-  background: linear-gradient(90deg, #6366f1, #f59e0b);
+  background: linear-gradient(90deg, #5a6b4f, #d9b54a);
 }
 .hero-tagline {
   margin: 0;
