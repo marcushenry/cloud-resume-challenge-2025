@@ -49,10 +49,9 @@ html { scroll-behavior: smooth; }
   .ticker-track { animation: none; }
 }
 
-/* ─── Numbered typographic index ───────────────────── */
+/* ─── Numbered typographic index (masthead) ────────── */
 .index-callout {
-  padding: 56px 0 64px;
-  border-top: 1px solid var(--hair);
+  padding: 36px 0 28px;
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: clamp(2rem, 5.5vw, 4.2rem);
