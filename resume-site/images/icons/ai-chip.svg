@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="68" y="62" width="120" height="120" rx="16"/>
+  <path d="M88 43 L88 61 M118 39 L118 61 M148 42 L148 61 M178 44 L178 61"/>
+  <path d="M88 184 L88 209 M118 184 L118 216 M148 184 L148 210 M178 184 L178 213"/>
+  <path d="M43 89 L67 89 M39 120 L67 120 M44 153 L67 153"/>
+  <path d="M189 88 L214 88 M189 121 L219 121 M189 154 L212 154"/>
+  <text x="83" y="143" fill="currentColor" stroke="none" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">AI</text>
+</svg>
