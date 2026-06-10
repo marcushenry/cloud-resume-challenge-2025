@@ -6,8 +6,6 @@ The final product is a fully-deployed, automated, and version-controlled website
 
 🧠 Project Architecture
 
-![Architecture diagram — static site on S3 served via CloudFront and Route 53, with an API Gateway + Lambda (Python) + DynamoDB visitor counter, all defined in AWS SAM and deployed by GitHub Actions](resume-site-architecture.png)
-
 Frontend:
 
 Static resume website hosted on Amazon S3
@@ -101,14 +99,4 @@ Sync website files to S3
 ✅ Fully functional cloud-based resume site accessible via a custom domain
 ✅ Automated infrastructure deployments and code testing
 ✅ Demonstrated understanding of AWS architecture, CI/CD pipelines, and DevOps workflows
-
-🌟 Next Steps
-
-Improve unit test coverage by mocking AWS SDK calls
-
-Add CloudWatch dashboards and alarms for visibility
-
-Integrate IaC linting and pre-deployment validation
-
-Experiment with CodePipeline or Terraform for comparison
 
