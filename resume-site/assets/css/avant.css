@@ -98,7 +98,7 @@ html { scroll-behavior: smooth; }
 .hero-mark {
   display: block;
   margin: 0 auto;
-  width: min(640px, 88vw);
+  width: min(520px, 80vw);
   height: auto;
   -webkit-mask-image: radial-gradient(ellipse 64% 62% at 50% 48%, #000 42%, transparent 86%);
   mask-image: radial-gradient(ellipse 64% 62% at 50% 48%, #000 42%, transparent 86%);
