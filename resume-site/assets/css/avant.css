@@ -132,6 +132,14 @@ html { scroll-behavior: smooth; }
   color: var(--ink-muted);
 }
 
+/* ─── Hand-drawn doodle beside a section heading ───── */
+.heading-doodle {
+  height: 1.5em;
+  width: auto;
+  vertical-align: -0.34em;
+  margin-left: 0.28em;
+}
+
 /* ─── Skills as hairline ledger ────────────────────── */
 :root[data-theme="callum"] .skills {
   display: block;
