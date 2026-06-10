@@ -49,10 +49,9 @@ html { scroll-behavior: smooth; }
   .ticker-track { animation: none; }
 }
 
-/* ─── Numbered typographic index ───────────────────── */
+/* ─── Numbered typographic index (masthead) ────────── */
 .index-callout {
-  padding: 56px 0 64px;
-  border-top: 1px solid var(--hair);
+  padding: 36px 0 28px;
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: clamp(2rem, 5.5vw, 4.2rem);
@@ -94,16 +93,43 @@ html { scroll-behavior: smooth; }
   transform: none;
 }
 
-/* ─── Acid hero eyebrow ────────────────────────────── */
-:root[data-theme="callum"] .hero-callum-eyebrow {
-  background: var(--acid);
-  color: var(--acid-ink);
-  border: none;
-  border-radius: 0;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+/* ─── Monogram hero ────────────────────────────────── */
+.hero-monogram { padding: 36px 0 28px; }
+.hero-mark {
+  display: block;
+  margin: 0 auto;
+  width: min(640px, 88vw);
+  height: auto;
+  -webkit-mask-image: radial-gradient(ellipse 64% 62% at 50% 48%, #000 42%, transparent 86%);
+  mask-image: radial-gradient(ellipse 64% 62% at 50% 48%, #000 42%, transparent 86%);
+  user-select: none;
+}
+.hero-name {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3.2vw, 2.1rem);
+  line-height: 1.2;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em; /* re-centers wide-tracked text */
   text-transform: uppercase;
+  color: var(--ink);
+}
+.hero-rule {
+  display: block;
+  width: 140px;
+  height: 2px;
+  margin: 20px auto;
+  background: linear-gradient(90deg, #6366f1, #f59e0b);
+}
+.hero-tagline {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  padding-left: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
 /* ─── Skills as hairline ledger ────────────────────── */
@@ -154,6 +180,15 @@ html { scroll-behavior: smooth; }
 :root[data-theme="callum"] .skills-group-items span:last-child::after { display: none; }
 @media (max-width: 700px) {
   :root[data-theme="callum"] .skills-group { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* ─── Real screenshot inside browser mock ──────────── */
+.browser-shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
 /* ─── The ledger ───────────────────────────────────── */

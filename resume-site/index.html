@@ -2,9 +2,10 @@
 <html lang="en" data-theme="callum">
 <head>
   <meta charset="UTF-8">
-  <title>Marcus Henry — Cloud Engineer</title>
+  <title>Marcus Henry — Cloud Infrastructure &amp; Automation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Marcus Henry — cloud engineer in Calgary, Alberta. AWS projects, IaC, CI/CD, and a serverless visitor counter.">
+  <meta name="description" content="Marcus Henry — cloud infrastructure &amp; automation in Calgary, Alberta. AWS projects, IaC, CI/CD, and a serverless visitor counter.">
+  <link rel="preload" as="image" href="images/mh-monogram-light.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="assets/css/theme.css">
@@ -14,60 +15,28 @@
 <body>
   <div class="shell">
 
-    <!-- ─────────────── Top Nav ─────────────── -->
-    <nav class="nav">
-      <a href="#" class="brand">
-        <span class="brand-mark"></span>
-        Marcus Henry
-        <span class="brand-sub">Cloud · Calgary</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#projects" class="is-active">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <!-- ─────────────── Index masthead ─────────────── -->
+    <nav class="index-callout" aria-label="Site index">
+      <a href="#projects" class="index-item"><sup>1</sup>Work</a><span class="index-dash"> — </span><a href="#about" class="index-item"><sup>2</sup>About</a><span class="index-dash"> — </span><a href="#skills" class="index-item"><sup>3</sup>Stack</a><span class="index-dash"> — </span><a href="#contact" class="index-item"><sup>4</sup>Contact</a>
     </nav>
 
     <!-- ─────────────── Ticker ─────────────── -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span class="ticker-content">Open to Cloud / DevOps roles — Calgary, Alberta&nbsp;&nbsp;·&nbsp;&nbsp;AWS · Terraform · Docker · GitHub Actions · Python&nbsp;&nbsp;·&nbsp;&nbsp;<em>SAA in progress, Q2 2026</em>&nbsp;&nbsp;·&nbsp;&nbsp;marcushenry.ca — a working ledger&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span class="ticker-content">Open to Cloud / DevOps roles — Calgary, Alberta&nbsp;&nbsp;·&nbsp;&nbsp;AWS · Terraform · Docker · GitHub Actions · Python&nbsp;&nbsp;·&nbsp;&nbsp;<em>SAA in progress, Q2 2026</em>&nbsp;&nbsp;·&nbsp;&nbsp;marcushenry.ca — a working ledger&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="ticker-content">Open to Cloud / DevOps roles — Calgary, Alberta&nbsp;&nbsp;·&nbsp;&nbsp;AWS · Terraform · Docker · GitHub Actions · Python&nbsp;&nbsp;·&nbsp;&nbsp;<em>KCNA in progress, 2026</em>&nbsp;&nbsp;·&nbsp;&nbsp;marcushenry.ca — a working ledger&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="ticker-content">Open to Cloud / DevOps roles — Calgary, Alberta&nbsp;&nbsp;·&nbsp;&nbsp;AWS · Terraform · Docker · GitHub Actions · Python&nbsp;&nbsp;·&nbsp;&nbsp;<em>KCNA in progress, 2026</em>&nbsp;&nbsp;·&nbsp;&nbsp;marcushenry.ca — a working ledger&nbsp;&nbsp;·&nbsp;&nbsp;</span>
       </div>
     </div>
 
     <!-- ─────────────── Hero ─────────────── -->
-    <section class="hero-callum">
-      <div class="hero-callum-blob"></div>
+    <section class="hero-callum hero-monogram">
       <div class="hero-callum-content">
-        <span class="hero-callum-eyebrow">
-          <span class="live-dot"></span>
-          Open to Cloud / DevOps roles
-        </span>
-        <h1 class="hero-callum-h1">
-          Hi, I'm Marcus 👋
-          <br>
-          I'm a cloud engineer based in Calgary,
-          <br>
-          <em>currently building toward DevOps.</em>
-        </h1>
-        <p class="hero-callum-sub">I keep the cloud running by day and ship small AWS projects by night — usually with too much coffee and a football match on in the background.</p>
-        <div class="hero-callum-cta">
-          <a href="#projects" class="btn-pill">
-            See my work
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M13 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="#contact" class="btn-pill btn-ghost">Say hi</a>
-        </div>
+        <img class="hero-mark" src="images/mh-monogram-light.jpg" alt="MH monogram" width="1152" height="1024" fetchpriority="high">
+        <h1 class="hero-name">Marcus Henry</h1>
+        <span class="hero-rule" aria-hidden="true"></span>
+        <p class="hero-tagline">Cloud Infrastructure &amp; Automation</p>
       </div>
     </section>
-
-    <!-- ─────────────── Index ─────────────── -->
-    <nav class="index-callout" aria-label="Site index">
-      <a href="#projects" class="index-item"><sup>1</sup>Work</a><span class="index-dash"> — </span><a href="#about" class="index-item"><sup>2</sup>About</a><span class="index-dash"> — </span><a href="#skills" class="index-item"><sup>3</sup>Stack</a><span class="index-dash"> — </span><a href="#contact" class="index-item"><sup>4</sup>Contact</a>
-    </nav>
 
     <!-- ─────────────── Tools row ─────────────── -->
     <div class="tools-row">
@@ -103,7 +72,6 @@
           <div class="section-title-eyebrow">Selected work</div>
           <h2 class="section-title">Things I've built.</h2>
         </div>
-        <p class="section-title-helper">Two production-style AWS projects from the past year. Each one taught me something I now reach for at work.</p>
       </div>
       <div class="project-list">
 
@@ -121,44 +89,7 @@
                   <div class="browser-bar-url">cmnt.marcushenry.ca</div>
                 </div>
                 <div class="browser-body">
-                  <div style="padding:10px 12px;font-size:9px;font-family:system-ui,sans-serif;color:#222;height:100%;background:#fff">
-                    <div style="display:flex;align-items:center;gap:4px;margin-bottom:8px">
-                      <div style="width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,#c8102e,#8b0016)"></div>
-                      <div style="font-weight:800;font-size:10px;letter-spacing:0.05em">CMNT SQUAD TRACKER</div>
-                      <div style="margin-left:auto;display:flex;gap:8px;font-size:7.5px;color:#666">
-                        <span style="color:#c8102e;font-weight:600">LOCKS</span>
-                        <span>CONTENTION</span>
-                      </div>
-                    </div>
-                    <div style="background:linear-gradient(135deg,#c8102e,#8b0016);border-radius:4px;padding:8px 10px;color:#fff;margin-bottom:6px">
-                      <div style="font-weight:800;font-size:11px;margin-bottom:2px">SQUAD LOCKS</div>
-                      <div style="font-size:7px;opacity:0.8">Near-certain picks · updated 03:00 MT</div>
-                    </div>
-                    <div style="display:grid;grid-template-columns:1fr 50px 30px 30px;gap:4px;padding:4px 6px;font-size:8px;border-bottom:1px solid #eee">
-                      <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:999px;background:#ddd"></div><span style="font-weight:600">Jonathan David</span></div>
-                      <div style="color:#666">Lille</div>
-                      <div style="text-align:right">90'</div>
-                      <div style="text-align:right;color:#c8102e;font-weight:600">7.6</div>
-                    </div>
-                    <div style="display:grid;grid-template-columns:1fr 50px 30px 30px;gap:4px;padding:4px 6px;font-size:8px;border-bottom:1px solid #eee;background:#f9fafb">
-                      <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:999px;background:#ddd"></div><span style="font-weight:600">Alphonso Davies</span></div>
-                      <div style="color:#666">Bayern</div>
-                      <div style="text-align:right">87'</div>
-                      <div style="text-align:right;color:#c8102e;font-weight:600">7.1</div>
-                    </div>
-                    <div style="display:grid;grid-template-columns:1fr 50px 30px 30px;gap:4px;padding:4px 6px;font-size:8px;border-bottom:1px solid #eee">
-                      <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:999px;background:#ddd"></div><span style="font-weight:600">Stephen Eustáquio</span></div>
-                      <div style="color:#666">Porto</div>
-                      <div style="text-align:right">90'</div>
-                      <div style="text-align:right;color:#c8102e;font-weight:600">6.8</div>
-                    </div>
-                    <div style="display:grid;grid-template-columns:1fr 50px 30px 30px;gap:4px;padding:4px 6px;font-size:8px;border-bottom:1px solid #eee;background:#f9fafb">
-                      <div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:999px;background:#ddd"></div><span style="font-weight:600">Tajon Buchanan</span></div>
-                      <div style="color:#666">Villarreal</div>
-                      <div style="text-align:right">78'</div>
-                      <div style="text-align:right;color:#c8102e;font-weight:600">6.9</div>
-                    </div>
-                  </div>
+                  <img class="browser-shot" src="images/cmnt-screenshot.jpg" alt="CMNT Squad Tracker — official squad page with player form table" loading="lazy" width="1240" height="930">
                 </div>
               </div>
             </div>
@@ -183,33 +114,10 @@
               <div class="browser-window">
                 <div class="browser-bar">
                   <div class="browser-bar-dots"><span></span><span></span><span></span></div>
-                  <div class="browser-bar-url">marcushenry.ca</div>
+                  <div class="browser-bar-url">cloudresumechallenge.dev</div>
                 </div>
                 <div class="browser-body">
-                  <div style="padding:10px 12px;font-size:8px;font-family:system-ui,sans-serif;color:#222;height:100%;background:#fafaf7">
-                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
-                      <div style="width:14px;height:14px;border-radius:999px;background:linear-gradient(135deg,#d4a85a,#b88636)"></div>
-                      <div style="font-weight:700;font-size:10px">marcushenry.ca</div>
-                      <div style="margin-left:auto;font-size:7px;color:#888">Visitors · 1,287</div>
-                    </div>
-                    <div style="font-size:16px;font-weight:800;margin-bottom:2px;letter-spacing:-0.01em">Marcus Henry</div>
-                    <div style="font-size:8.5px;color:#666;margin-bottom:10px">Cloud Engineer · Calgary</div>
-                    <div style="display:flex;gap:4px;margin-bottom:10px">
-                      <span style="padding:2px 6px;border-radius:999px;background:#0a0a0a;color:#fff;font-size:6.5px">See my work →</span>
-                      <span style="padding:2px 6px;border-radius:999px;background:#fff;border:1px solid #e5e5e5;font-size:6.5px">Resume</span>
-                    </div>
-                    <div style="font-size:7px;text-transform:uppercase;letter-spacing:0.12em;color:#999;margin-bottom:4px">SELECTED WORK</div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
-                      <div style="background:#fff;border:1px solid #eee;border-radius:4px;padding:5px">
-                        <div style="font-weight:700;font-size:7.5px">CMNT Tracker</div>
-                        <div style="font-size:6.5px;color:#888">Next.js · ECS</div>
-                      </div>
-                      <div style="background:#fff;border:1px solid #eee;border-radius:4px;padding:5px">
-                        <div style="font-weight:700;font-size:7.5px">Cloud Resume</div>
-                        <div style="font-size:6.5px;color:#888">Lambda · S3</div>
-                      </div>
-                    </div>
-                  </div>
+                  <img class="browser-shot" src="images/crc-screenshot.jpg" alt="The Cloud Resume Challenge — a proven way to advance your cloud career" loading="lazy" width="1240" height="930">
                 </div>
               </div>
             </div>
@@ -217,7 +125,7 @@
               <span>S3</span><span>CloudFront</span><span>Route 53</span><span>API Gateway</span><span>Lambda (Python)</span>
             </div>
             <div class="project-links">
-              <a href="https://marcushenry.ca" target="_blank" rel="noreferrer" class="project-link">Visit ↗</a>
+              <a href="https://cloudresumechallenge.dev/" target="_blank" rel="noreferrer" class="project-link">Visit ↗</a>
               <a href="https://github.com/marcushenry/cloud-resume-challenge-2025" target="_blank" rel="noreferrer" class="project-link is-secondary">Code</a>
             </div>
           </div>
@@ -297,7 +205,14 @@
           <span class="ledger-num">04</span>
           <span class="ledger-name">AWS Solutions Architect — Associate</span>
           <span class="ledger-cat">Certification</span>
-          <span class="ledger-year">Q2 2026</span>
+          <span class="ledger-year">2026</span>
+          <span class="ledger-status is-earned">Earned</span>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-num">05</span>
+          <span class="ledger-name">Kubernetes and Cloud Native Associate (KCNA)</span>
+          <span class="ledger-cat">Certification</span>
+          <span class="ledger-year">2026</span>
           <span class="ledger-status is-progress">In progress</span>
         </div>
       </div>
@@ -317,13 +232,13 @@
           <span class="contact-row-label">GitHub</span>
           <span class="contact-row-handle">marcushenry</span>
         </a>
-        <a href="https://linkedin.com/in/marcushenry" target="_blank" rel="noreferrer" class="contact-row">
+        <a href="https://linkedin.com/in/marcusphenry" target="_blank" rel="noreferrer" class="contact-row">
           <span class="contact-row-label">LinkedIn</span>
-          <span class="contact-row-handle">in/marcushenry</span>
+          <span class="contact-row-handle">in/marcusphenry</span>
         </a>
-        <a href="mailto:hello@marcushenry.ca" class="contact-row">
+        <a href="mailto:marcusphenry@gmail.com" class="contact-row">
           <span class="contact-row-label">Email</span>
-          <span class="contact-row-handle">hello@marcushenry.ca</span>
+          <span class="contact-row-handle">marcusphenry@gmail.com</span>
         </a>
         <a href="assets/Marcus-Henry-2026.pdf" target="_blank" rel="noreferrer" class="contact-row">
           <span class="contact-row-label">Resume</span>
