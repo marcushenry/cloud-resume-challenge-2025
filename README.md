@@ -6,6 +6,8 @@ The final product is a fully-deployed, automated, and version-controlled website
 
 🧠 Project Architecture
 
+![Architecture diagram — static site on S3 served via CloudFront and Route 53, with an API Gateway + Lambda (Python) + DynamoDB visitor counter, all defined in AWS SAM and deployed by GitHub Actions](resume-site-architecture.png)
+
 Frontend:
 
 Static resume website hosted on Amazon S3
