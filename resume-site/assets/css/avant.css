@@ -238,25 +238,9 @@ a.ledger-row:hover .ledger-name { text-decoration: underline; text-underline-off
   .ledger-num, .ledger-cat, .ledger-year { display: none; }
 }
 
-/* ─── Giant cropped wordmark ───────────────────────── */
-.mega-wordmark {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-top: 40px;
-  height: 0.62em;
-  overflow: hidden;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(64px, 13.5vw, 220px);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  white-space: nowrap;
-  text-align: center;
-  color: var(--ink);
-  user-select: none;
-}
-.mega-wordmark sup {
-  font-size: 0.18em;
-  font-weight: 500;
-  vertical-align: super;
+/* ─── Footer wordmark (replaces the brand text) ────── */
+.footer-wordmark {
+  display: block;
+  width: 160px;
+  height: auto;
 }
