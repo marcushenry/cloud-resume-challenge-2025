@@ -132,6 +132,46 @@ html { scroll-behavior: smooth; }
   color: var(--ink-muted);
 }
 
+/* ─── Tool pills: grand spiral-in entrance ────────────
+ * When the row first scrolls into view, each chip spirals
+ * in from off-screen — alternating sides, big rotation —
+ * cascading down the row, then locks static. JS adds
+ * .anim-ready (hides chips) then .in-view (fires it), so
+ * with no JS the pills just sit there normally.
+ */
+:root[data-theme="callum"] .tools-row.anim-ready .tool-chip { opacity: 0; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip {
+  animation: chip-spiral-in 0.95s cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes chip-spiral-in {
+  0%   { opacity: 0; transform: translate(var(--sx, -42vw), var(--sy, 58vh)) rotate(var(--sr, -540deg)) scale(0.25); }
+  55%  { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
+/* Alternate entry vectors so they don't all fly the same way */
+:root[data-theme="callum"] .tool-chip:nth-child(odd)  { --sx: -44vw; --sr: -540deg; }
+:root[data-theme="callum"] .tool-chip:nth-child(even) { --sx:  44vw; --sr:  540deg; }
+:root[data-theme="callum"] .tool-chip:nth-child(3n)   { --sy: 64vh; }
+:root[data-theme="callum"] .tool-chip:nth-child(3n+1) { --sy: 48vh; }
+/* Cascade — staggered start per chip */
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(1) { animation-delay: 0.00s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(2) { animation-delay: 0.09s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(3) { animation-delay: 0.18s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(4) { animation-delay: 0.27s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(5) { animation-delay: 0.36s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(6) { animation-delay: 0.45s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(7) { animation-delay: 0.54s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(8) { animation-delay: 0.63s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(9)  { animation-delay: 0.72s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(10) { animation-delay: 0.81s; }
+:root[data-theme="callum"] .tools-row.in-view .tool-chip:nth-child(11) { animation-delay: 0.90s; }
+/* Hide the off-screen travel from creating a horizontal scrollbar */
+:root[data-theme="callum"] body { overflow-x: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="callum"] .tools-row.anim-ready .tool-chip { opacity: 1; }
+  :root[data-theme="callum"] .tools-row.in-view .tool-chip { animation: none; }
+}
+
 /* ─── Hand-drawn doodle beside a section heading ───── */
 .heading-doodle {
   height: 1.5em;

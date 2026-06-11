@@ -64,6 +64,8 @@
       <span class="tool-chip"><span class="tool-chip-icon" style="background:#000;color:#fff">N</span>Next.js</span>
       <span class="tool-chip"><span class="tool-chip-icon" style="background:#0078d4;color:#fff">M</span>Microsoft 365</span>
       <span class="tool-chip"><span class="tool-chip-icon" style="background:#012456;color:#fff">P</span>PowerShell</span>
+      <span class="tool-chip"><span class="tool-chip-icon" style="background:#d97757;color:#fff">C</span>Claude Code</span>
+      <span class="tool-chip"><span class="tool-chip-icon" style="background:#d9b54a;color:#1a1a1a">H</span>Hermes</span>
     </div>
 
     <!-- ─────────────── Projects ─────────────── -->
@@ -291,6 +293,26 @@
       } catch {
         el.textContent = "—";
       }
+    })();
+  </script>
+
+  <script>
+    // Tool pills: spiral in the first time the row scrolls into view, then lock static.
+    (() => {
+      const row = document.querySelector(".tools-row");
+      if (!row) return;
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce || !("IntersectionObserver" in window)) return;
+      row.classList.add("anim-ready");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            row.classList.add("in-view");
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      io.observe(row);
     })();
   </script>
 </body>
