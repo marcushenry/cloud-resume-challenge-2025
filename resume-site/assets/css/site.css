@@ -641,7 +641,7 @@
 :root[data-theme="callum"] .project {
   background: #fff;
   border: 1px solid var(--hair);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -733,7 +733,7 @@
 
 /* Browser window preview */
 .browser-window {
-  border-radius: 12px;
+  border-radius: 0;
   background: var(--bg-deep);
   border: 1px solid var(--hair);
   overflow: hidden;
@@ -939,7 +939,7 @@
   padding: 18px 22px;
   background: #fff;
   border: 1px solid var(--hair);
-  border-radius: 18px;
+  border-radius: 0;
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 :root[data-theme="callum"] .contact-row:hover {
