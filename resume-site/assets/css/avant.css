@@ -317,3 +317,59 @@ a.ledger-row:hover .ledger-name { text-decoration: underline; text-underline-off
   width: 160px;
   height: auto;
 }
+
+/* ─── Visitor pill: orbiting light ─────────────────────
+ * A gold-to-olive arc travels around the pill's border ring
+ * (conic-gradient masked to the ring, angle animated via
+ * @property). Browsers without @property, or reduced-motion
+ * users, just see the normal static hairline border.
+ */
+@property --orbit {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+:root[data-theme="callum"] .visitor-pill,
+:root[data-theme="callum"] .project-link:not(.is-secondary) { position: relative; }
+:root[data-theme="callum"] .visitor-pill::before,
+:root[data-theme="callum"] .project-link:not(.is-secondary)::before {
+  content: "";
+  position: absolute;
+  inset: -1px;               /* sit on top of the 1px border */
+  border-radius: 999px;
+  padding: 1.5px;            /* ring thickness */
+  background: conic-gradient(
+    from var(--orbit),
+    transparent 0deg,
+    #d9b54a 24deg,
+    #5a6b4f 44deg,
+    transparent 72deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: pill-orbit 3.2s linear infinite;
+  pointer-events: none;
+}
+/* Brighter acid streak on the black Visit pills */
+:root[data-theme="callum"] .project-link:not(.is-secondary)::before {
+  padding: 2px;
+  background: conic-gradient(
+    from var(--orbit),
+    transparent 0deg,
+    rgba(234, 255, 43, 0.35) 20deg,
+    var(--acid) 45deg,
+    #fbffd6 55deg,
+    var(--acid) 65deg,
+    rgba(234, 255, 43, 0.35) 90deg,
+    transparent 110deg
+  );
+}
+@keyframes pill-orbit {
+  to { --orbit: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="callum"] .visitor-pill::before,
+  :root[data-theme="callum"] .project-link:not(.is-secondary)::before { animation: none; }
+}
