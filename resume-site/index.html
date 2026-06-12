@@ -86,14 +86,21 @@
             <p class="project-sub">A daily-updating data site for Canada's men's national team.</p>
             <div class="project-year">2026</div>
             <div style="margin-top:auto;padding-top:12px">
-              <div class="browser-window">
+              <div class="browser-window project-slider" data-slide="0">
                 <div class="browser-bar">
                   <div class="browser-bar-dots"><span></span><span></span><span></span></div>
-                  <div class="browser-bar-url">cmnt.marcushenry.ca</div>
+                  <div class="browser-bar-url" data-url='["cmnt.marcushenry.ca","architecture diagram"]'>cmnt.marcushenry.ca</div>
                 </div>
                 <div class="browser-body">
-                  <img class="browser-shot" src="images/cmnt-screenshot.jpg" alt="CMNT Squad Tracker — official squad page with player form table" loading="lazy" width="1240" height="930">
+                  <div class="slide-track">
+                    <div class="slide"><img class="browser-shot" src="images/cmnt-screenshot.jpg" alt="CMNT Squad Tracker — official squad page with player form table" loading="lazy" width="1240" height="930"></div>
+                    <div class="slide"><img class="browser-shot is-diagram" src="images/cmnt-architecture.png" alt="CMNT Squad Tracker — architecture diagram" loading="lazy" width="1202" height="558"></div>
+                  </div>
                 </div>
+              </div>
+              <div class="slider-tabs" role="tablist">
+                <button type="button" class="slider-tab is-active" data-go="0" aria-selected="true">Preview</button>
+                <button type="button" class="slider-tab" data-go="1" aria-selected="false">Architecture</button>
               </div>
             </div>
             <div class="project-stack">
@@ -114,14 +121,21 @@
             <p class="project-sub">A serverless resume site with a Lambda-powered visitor counter.</p>
             <div class="project-year">2025</div>
             <div style="margin-top:auto;padding-top:12px">
-              <div class="browser-window">
+              <div class="browser-window project-slider" data-slide="0">
                 <div class="browser-bar">
                   <div class="browser-bar-dots"><span></span><span></span><span></span></div>
-                  <div class="browser-bar-url">cloudresumechallenge.dev</div>
+                  <div class="browser-bar-url" data-url='["cloudresumechallenge.dev","architecture diagram"]'>cloudresumechallenge.dev</div>
                 </div>
                 <div class="browser-body">
-                  <img class="browser-shot" src="images/crc-screenshot.jpg" alt="The Cloud Resume Challenge — a proven way to advance your cloud career" loading="lazy" width="1240" height="930">
+                  <div class="slide-track">
+                    <div class="slide"><img class="browser-shot" src="images/crc-screenshot.jpg" alt="The Cloud Resume Challenge — a proven way to advance your cloud career" loading="lazy" width="1240" height="930"></div>
+                    <div class="slide"><img class="browser-shot is-diagram" src="images/crc-architecture.png" alt="Cloud Resume Challenge — architecture diagram" loading="lazy" width="1032" height="444"></div>
+                  </div>
                 </div>
+              </div>
+              <div class="slider-tabs" role="tablist">
+                <button type="button" class="slider-tab is-active" data-go="0" aria-selected="true">Preview</button>
+                <button type="button" class="slider-tab" data-go="1" aria-selected="false">Architecture</button>
               </div>
             </div>
             <div class="project-stack">
@@ -282,6 +296,12 @@
 
   </div>
 
+  <!-- Lightbox for expanding project media (screenshots / diagrams) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button type="button" class="lightbox-close" aria-label="Close">✕</button>
+    <img class="lightbox-img" src="" alt="">
+  </div>
+
   <script>
     (async () => {
       const el = document.getElementById("visitor-count");
@@ -333,6 +353,66 @@
         });
       }, { threshold: 0.6 });
       pencil.forEach((d) => io.observe(d));
+    })();
+  </script>
+
+  <script>
+    // Project media slider: switch between the live preview and the diagram.
+    (() => {
+      document.querySelectorAll(".project-slider").forEach((slider) => {
+        const card = slider.closest(".project-meta-col") || slider.parentElement.parentElement;
+        const tabs = [...card.querySelectorAll(".slider-tab")];
+        const urlEl = slider.querySelector(".browser-bar-url");
+        let urls = [];
+        try { urls = JSON.parse(urlEl.getAttribute("data-url") || "[]"); } catch {}
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const i = Number(tab.dataset.go);
+            slider.dataset.slide = String(i);
+            tabs.forEach((t) => {
+              const on = t === tab;
+              t.classList.toggle("is-active", on);
+              t.setAttribute("aria-selected", on ? "true" : "false");
+            });
+            if (urls[i]) urlEl.textContent = urls[i];
+          });
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    // Click a project's media to expand the current slide in a lightbox.
+    (() => {
+      const lb = document.getElementById("lightbox");
+      if (!lb) return;
+      const lbImg = lb.querySelector(".lightbox-img");
+      const open = (src, alt) => {
+        lbImg.src = src;
+        lbImg.alt = alt || "";
+        lb.classList.add("is-open");
+        lb.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      };
+      const close = () => {
+        lb.classList.remove("is-open");
+        lb.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      };
+      document.querySelectorAll(".project-slider .browser-body").forEach((body) => {
+        body.addEventListener("click", () => {
+          const slider = body.closest(".project-slider");
+          const idx = Number(slider.dataset.slide || 0);
+          const img = body.querySelectorAll(".slide img")[idx];
+          if (img) open(img.currentSrc || img.src, img.alt);
+        });
+      });
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb || e.target.classList.contains("lightbox-close")) close();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lb.classList.contains("is-open")) close();
+      });
     })();
   </script>
 </body>

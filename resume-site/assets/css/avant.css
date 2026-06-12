@@ -272,6 +272,104 @@ html { scroll-behavior: smooth; }
   object-position: top;
 }
 
+/* ─── Project media slider: Preview ⇄ Architecture ──── */
+.slide-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(.65, 0, .35, 1);
+}
+.slide { flex: 0 0 100%; height: 100%; }
+.browser-shot.is-diagram {
+  object-fit: contain;
+  object-position: center;
+  background: #fafaf7;
+  padding: 14px;
+}
+.project-slider[data-slide="1"] .slide-track { transform: translateX(-100%); }
+
+.slider-tabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.slider-tab {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1px solid var(--hair);
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.slider-tab:hover { border-color: var(--ink); color: var(--ink); }
+.slider-tab.is-active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+/* Click-to-expand cue + lightbox */
+.project-slider .browser-body { cursor: zoom-in; }
+.project-slider .browser-body::after {
+  content: "⤢ Expand";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--hair);
+  padding: 3px 7px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.project-slider:hover .browser-body::after { opacity: 1; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 5vh 5vw;
+  background: rgba(10, 10, 10, 0.86);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.14); }
+
 /* ─── The ledger ───────────────────────────────────── */
 .ledger { border-top: 1px solid var(--hair); }
 .ledger-row {
